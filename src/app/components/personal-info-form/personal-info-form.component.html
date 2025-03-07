@@ -1,0 +1,36 @@
+<app-loading [diameter]="100" [isLoading]="isLoading">
+  <form [formGroup]="personalInfoForm" class="custom-form">
+    <mat-form-field appearance="outline">
+      <mat-label>Имя</mat-label>
+      <input matInput formControlName="name"  [readonly]="!(isEditing | async) || (isInitial | async)"/>
+      <mat-error *ngIf="personalInfoForm.controls['name'].hasError('minlength')  && !(isInitial | async)">
+        Минимум 2 символа
+      </mat-error>
+      <mat-error *ngIf="personalInfoForm.controls['name'].hasError('maxlength')  && !(isInitial | async)">
+        Максимум 50 символов
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Контакт</mat-label>
+      <input matInput formControlName="contact"  [readonly]="!(isEditing | async) || (isInitial | async)"/>
+      <mat-error *ngIf="personalInfoForm.controls['contact'].hasError('email') && !(isInitial | async)">
+        Некорректный контакт
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Доп. информация</mat-label>
+      <textarea matInput formControlName="description" rows="3" [readonly]="!(isEditing | async) || (isInitial | async)"></textarea>
+      <mat-error *ngIf="personalInfoForm.controls['description'].hasError('maxlength') && !(isInitial | async)">
+        Не более 300 символов
+      </mat-error>
+    </mat-form-field>
+
+    <div class="buttons">
+      <input *ngIf="!(isEditing | async)" type="button" value="Изменить" (click)="toggleEdit()" class="styled-submit-input button-input" [readonly]="(isInitial | async)"/>
+      <input *ngIf="(isEditing | async)" type="button" value="Сохранить" (click)="save()" [disabled]="personalInfoForm.invalid" class="styled-submit-input button-input" [readonly]="(isInitial | async)"/>
+      <input *ngIf="(isEditing | async)" type="button" value="Отмена" (click)="toggleEdit()" class="styled-submit-input button-input" [readonly]="!(isEditing | async) || (isInitial | async)"/>
+    </div>
+  </form>
+</app-loading>

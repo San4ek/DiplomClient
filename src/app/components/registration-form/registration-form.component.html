@@ -1,0 +1,25 @@
+<form [formGroup]="registerForm" xmlns="http://www.w3.org/1999/html" (ngSubmit)="onSubmit()" class="custom-form">
+  <h2>Регистрация</h2>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" type="email" required>
+    <mat-error *ngIf="registerForm.get('email')?.hasError('required')">Email обязателен</mat-error>
+    <mat-error *ngIf="registerForm.get('email')?.hasError('email')">Неверный формат email</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Пароль</mat-label>
+    <input matInput formControlName="password" type="password" required>
+    <mat-error *ngIf="registerForm.get('email')?.hasError('required')">Email обязателен</mat-error>
+    <mat-error *ngIf="registerForm.get('email')?.hasError('email')">Неверный формат email</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Имя</mat-label>
+    <input matInput formControlName="nickname" type="nickname" required>
+    <mat-error *ngIf="registerForm.get('nickname')?.hasError('required')">Никнейм обязателен</mat-error>
+  </mat-form-field>
+
+  <input type="submit" value="Отправить данные" [disabled]="registerForm.invalid" class="styled-submit-input"/>
+</form>

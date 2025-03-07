@@ -1,0 +1,36 @@
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  color: white;
+  border-radius: 4px;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+    border-radius: 2px;
+  }
+
+  &.active::before {
+    background-color: var(--neon-primary);
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 10px rgba(179, 136, 255, 0.5);
+  }
+
+  &.active {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+}

@@ -1,0 +1,33 @@
+<main>
+  <header #header>
+    <mat-toolbar class="neon-toolbar">
+      <button id="header-button" mat-icon-button (click)="sidenav.toggle()" class="animated-button">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>EduLink</span>
+
+      <span class="spacer"></span>
+
+      <app-loading [isLoading]="isTokensLoading" diameter="40" class="login-profile-container">
+        <button mat-button class="auth-button" (click)="handleAuth()">
+          {{ (isAuthenticated | async) ? 'Профиль' : 'Войти' }}
+        </button>
+      </app-loading>
+    </mat-toolbar>
+  </header>
+
+  <mat-sidenav-container class="app-container">
+    <mat-sidenav #sidenav mode="over" class="neon-sidenav" [fixedInViewport]="true"
+                 fixedTopGap="{{ header.offsetHeight }}">
+      <app-nav-item (itemClick)="sidenav.close()" icon="home" label="Registration" link="/registration"></app-nav-item>
+      <app-nav-item (itemClick)="sidenav.close()" icon="settings" label="Auth code" link="/"></app-nav-item>
+      <app-nav-item (itemClick)="sidenav.close()" icon="account_circle" label="Profile" link="/profile"></app-nav-item>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <div id="routerContent">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</main>

@@ -1,0 +1,5 @@
+@if (isLoading | async) {
+  <mat-progress-spinner [@inOutAnimation] mode="indeterminate" [diameter]="diameter" class="loading-spinner"></mat-progress-spinner>
+} @else {
+  <ng-content></ng-content>
+}

@@ -1,0 +1,12 @@
+<form [formGroup]="authCodeForm" (ngSubmit)="onSubmit()" class="custom-form">
+  <h2>Секретный код</h2>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Код</mat-label>
+    <input matInput formControlName="code" type="password" required>
+    <mat-error *ngIf="authCodeForm.get('code')?.hasError('required')">Код обязателен</mat-error>
+    <mat-error *ngIf="authCodeForm.get('code')?.hasError('pattern')">Неверный формат кода</mat-error>
+  </mat-form-field>
+
+  <input type="submit" value="Отправить код" [disabled]="authCodeForm.invalid" class="styled-submit-input"/>
+</form>
