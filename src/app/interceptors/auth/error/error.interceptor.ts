@@ -1,9 +1,10 @@
 import {HttpErrorResponse, HttpInterceptorFn} from '@angular/common/http';
 import {inject} from '@angular/core';
 import {catchError, throwError} from 'rxjs';
-import {SnackBarService} from '../../../services/snack-bar.service';
+import {SnackBarService} from '../../../services/snack-bar/snack-bar.service';
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
+
   const snackBarService = inject(SnackBarService);
 
   return next(req).pipe(
@@ -17,7 +18,6 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
       } else if (error.status >= 500) {
         errorMessage = `🔥 Ошибка сервера (${error.status}). Повторите попытку позже.`;
       }
-      console.log("Error");
 
       snackBarService.showError(errorMessage);
 

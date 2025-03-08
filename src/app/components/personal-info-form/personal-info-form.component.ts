@@ -6,7 +6,6 @@ import {AsyncPipe, NgIf} from '@angular/common';
 import {UserInfoService} from '../../services/http/user-info/user-info.service';
 import {BehaviorSubject} from 'rxjs';
 import {UserInfo} from '../../dto/user-info/user-info';
-import {HttpErrorResponse} from '@angular/common/http';
 import {LoadingComponent} from '../../shared/loading/loading.component';
 
 const INITIAL_USER_INFO: UserInfo = {
@@ -61,12 +60,9 @@ export class PersonalInfoFormComponent implements OnInit {
         this.userInfo.next(userInfo)
         this.personalInfoForm.patchValue(userInfo)
         this.isInitial.next(false);
-        this.isLoading.next(false);
-      },
-      error: (error: HttpErrorResponse) => {
-        console.log(error);
-        this.isLoading.next(false);
       }
+    }).add(() => {
+      this.isLoading.next(false);
     });
   }
 

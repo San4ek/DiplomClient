@@ -118,9 +118,9 @@ mat-error {
 }
 
 .styled-submit-input:hover {
-  background-color: var(--neon-primary); /* Неоновый фиолетовый */
+  background-color: var(--neon-primary);
   color: white;
-  box-shadow: 0 0 12px rgba(179, 136, 255, 0.7); /* Яркое свечение при наведении */
+  box-shadow: 0 0 12px rgba(179, 136, 255, 0.7);
 }
 
 .custom-error-snackbar button {
@@ -132,17 +132,4 @@ mat-error {
   background: linear-gradient(135deg, #d32f2f, #ff5252) !important;
   color: white !important;
   box-shadow: 0 0 12px rgba(255, 82, 82, 1);
-}
-
-/* Сдвигаем контейнер уведомлений внизу справа */
-.mat-snack-bar-container {
-  position: fixed !important;
-  bottom: 10px !important;
-  right: 10px !important;
-  z-index: 9999 !important;
-}
-
-/* Уведомления не будут перекрывать друг друга */
-.mat-snack-bar-container .mat-snack-bar {
-  margin-bottom: 10px !important; /* Отступ между уведомлениями */
 }
